@@ -1,6 +1,6 @@
 package org.example;
 import java.util.Scanner;
-public class numeroSuerte {
+public class NumSuerte {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce tu fecha de nacimiento (dd/mm/yyyy): ");
