@@ -2,78 +2,48 @@ package org.example;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 public class Modos {
-    public static void main(String[] args){
-        Scanner teclado = new Scanner(System.in);
-        LocalDateTime hoy = LocalDateTime.now();
-        int anyoActual = hoy.getYear();
-
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         System.out.println("Programa para calcular el año de nacimiento y la edad");
         System.out.println("1º Año de nacimiento");
         System.out.println("2º Edad");
-        System.out.println("Seleciona una opcion: ");
+        System.out.print("Seleciona una opcion: ");
+        String opcion = sc.next();
 
-        String opcion = teclado.next();
-        int fechaNacimiento = 1800;
+        LocalDateTime hoy = LocalDateTime.now();
+        int yearActual = hoy.getYear();
+        switch (opcion) {
+            case "1":
+                System.out.print("Introduce tu año de nacimiento: ");
+                String yearNacimiento = sc.next();
+                int integerNacimiento = Integer.parseInt(yearNacimiento);
 
-        boolean error = false;
-        if (opcion  .equals("1")) {
-            System.out.println("Introduce un año: ");
-            String anyoNacimiento = teclado.next();
+                if (integerNacimiento < 1900 && integerNacimiento > yearActual) {
+                    System.out.println("ERROR: Fecha de nacimiento fuera de rango (Min 1900)");
+                } else if (integerNacimiento >= 1900 && integerNacimiento <= 1927) {
+                    System.out.println("Eres de la Generación sin bautizar");
+                } else if (integerNacimiento >= 1928 && integerNacimiento <= 1944) {
+                    System.out.println("Eres de la Generación Silent");
+                } else if (integerNacimiento >= 1945 && integerNacimiento <= 1964) {
+                    System.out.println("Eres de la Generación Baby Boomers");
+                } else if (integerNacimiento >= 1965 && integerNacimiento <= 1981) {
+                    System.out.println("Eres de la Generación X");
+                } else if (integerNacimiento >= 1982 && integerNacimiento <= 1994) {
+                    System.out.println("Eres de la Generación Millenial");
+                } else if (integerNacimiento >= 1995 && integerNacimiento <= yearActual) {
+                    System.out.println("Eres de la Generación Centennials");
+                } else {
+                    System.out.println("No eres de ninguna generación");
+                }
 
-            try {
-                fechaNacimiento = Integer.parseInt(anyoNacimiento);
-            }catch (NumberFormatException e){
-                System.out.println("Has introducido un formato erroneo. no es un numero. ");
-            }
+            case "2":
+                System.out.print("Introduce tu edad: ");
+                int edad = sc.nextInt();
 
-            if (fechaNacimiento < 1900 || fechaNacimiento > anyoActual){
-                System.out.println("El año introducido no es correcto");
-                error = true;
-            }
+                if (edad >= 0){
+                    int resultado = yearActual - edad;
+                }
 
-        } else if (opcion.equals("2")) {
-
-            int edad = 0;
-
-            System.out.println("Introduce una edad: ");
-
-            if (teclado.hasNextInt()){
-
-            }else {
-                System.out.println("La edad introducida no tiene un formato valido");
-            }
-
-            if (edad < 0){
-                System.out.println("La edad introducida no es valida. ");
-                error = true;
-            }else {
-
-                int anyo_nac = anyoActual - edad;
-
-            }
-
-        } else {
-            System.out.println("El modo introdicdo no es correcto.");
         }
-
-        if (error == false) {
-
-            if (fechaNacimiento >= 1900 && fechaNacimiento <= 1927) {
-                System.out.println("Eres de la generacion sin bautizar.");
-            } else if (fechaNacimiento >= 1928 && fechaNacimiento <= 1944) {
-                System.out.println("Eres de la generacion silet.");
-            } else if (fechaNacimiento >= 1945 && fechaNacimiento <= 1964) {
-                System.out.println("Eres de la generacion baby boomers.");
-            } else if (fechaNacimiento >= 1965 && fechaNacimiento <= 1981) {
-                System.out.println("Eres de la generacion x.");
-            } else if (fechaNacimiento >= 1982 && fechaNacimiento <= 1994) {
-                System.out.println("Eres de la generacion mellenial.");
-            } else if (fechaNacimiento >= 1995 && fechaNacimiento <= anyoActual) {
-                System.out.println("Eres de la generacion centenial.");
-            } else {
-                System.out.println("No eres de ninguna generacion.");
-            }
-        }
-
     }
 }
